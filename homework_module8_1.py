@@ -1,20 +1,26 @@
 def add_everything_up(a, b):
-  """Складывает числа и строки.
+    """Складывает числа и строки, обрабатывая возможные исключения.
 
-  Args:
-    a: Число или строка.
-    b: Число или строка.
+    Args:
+        a: Число или строка.
+        b: Число или строка.
 
-  Returns:
-    Результат сложения или конкатенации.
-  """
+    Returns:
+        Результат сложения или конкатенации.
+    """
 
-  if type(a) != type(b):
-    return str(a) + str(b)
-  else:
-    return a + b
+    try:
+        # Попробуем сложить как числа. Если типы разные, возникнет TypeError
+        return a + b
+    except TypeError:
+        # Если возникло исключение TypeError, значит типы разные
+        return str(a) + str(b)
 
 # Примеры использования:
-print(add_everything_up(123.456, 'строка'))
-print(add_everything_up('яблоко', 4215))
-print(add_everything_up(123.456, 7))
+print(add_everything_up(123.456, 'строка'))  # Вывод: 123.456строка
+print(add_everything_up('яблоко', 4215))  # Вывод: яблоко4215
+print(add_everything_up(123.456, 7))  # Вывод: 130.456
+
+# Дополнительные примеры для демонстрации гибкости функции:
+print(add_everything_up(True, False))  # Вывод: TrueFalse (булевы значения преобразуются в строки)
+print(add_everything_up([1, 2], [3, 4]))  # Вывод: [1, 2, 3, 4] (списки конкатенируются)
